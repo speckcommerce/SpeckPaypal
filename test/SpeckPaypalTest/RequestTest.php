@@ -38,7 +38,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
     {
         $request = $this->request;
         $payment = new Payment(array('paymentDetails' => new \SpeckPaypal\Element\PaymentDetails(array('amt' => '10.00'))));
-
+        $payment->setIpAddress('255.255.255.255');
         $payment->setCardNumber('4744151425799438');
         $payment->setExpirationDate('112017');
         $payment->setFirstName('John');
@@ -46,6 +46,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 
         $address = new Address;
         $address->setStreet('27 nowhere');
+        $address->setCity('Ventura');
         $address->setState('California');
         $address->setZip(92656);
         $address->setCountry('US');
@@ -67,7 +68,7 @@ TIMESTAMP=2012%2d11%2d02T06%3a11%3a17Z&CORRELATIONID=ee90a747f2bdb&ACK=Success&V
         $request->getClient()->setAdapter($adapter);
         $response = $request->send($payment);
 
-        $this->assertTrue($response->isSuccess());
+        $this->assertTrue($response->isSuccess(), current($response->getErrors()));
     }
 
     public function testInvalidRequest()

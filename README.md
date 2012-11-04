@@ -22,6 +22,7 @@ This module currently supports the following calls with API version 95.0:
 * DoExpressCheckoutPayment
 * GetExpressCheckoutDetails
 * GetTransactionDetails
+* RefundTransaction
 * SetExpressCheckout
 
 Requirements
@@ -83,6 +84,15 @@ $payment->setLastName('Canyon');
 $payment->setIpAddress('255.255.255.255');
 $payment->setCreditCardType('Visa');
 $payment->setCvv2('345');
+
+$address = new \SpeckPaypal\Element\Address;
+$address->setStreet('27 Your Street');
+$address->setStreet2('Apt 23');
+$address->setCity('Some City');
+$address->setState('California');
+$address->setZip('92677');
+$address->setCountryCode('US');
+$payment->setAddress($address);
 
 $response = $paypalRequest->send($payment);
 
