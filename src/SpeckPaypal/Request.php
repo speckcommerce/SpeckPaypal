@@ -1,13 +1,8 @@
 <?php
 namespace SpeckPaypal;
 
-use Zend\Http\Client;
-use Zend\Config\Config;
-
 class Request
 {
-    const VERSION = '58.0';
-
     /*
      * @var \Zend\Http\Client
      */
@@ -33,7 +28,11 @@ class Request
             $config = $this->config;
 
             if(is_null($client)) {
-                throw new Exception('Zend\Http\Client must be set.');
+                throw new \Exception('Zend\Http\Client must be set.');
+            }
+
+            if(false === $model->isValid()) {
+                throw new \Exception(get_class($model) . " is invalid.");
             }
 
             $client->setUri(new \Zend\Uri\Http($config->getEndpoint()));
@@ -42,7 +41,7 @@ class Request
             $httpResponse = $client->send();
             $response = new Response($httpResponse->getBody());
 
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
 
             $response = new Response();
             $response->addError($e->getMessage());
@@ -51,7 +50,7 @@ class Request
         return $response;
     }
 
-    public function setClient(Client $client)
+    public function setClient(\Zend\Http\Client $client)
     {
         $this->client = $client;
     }
