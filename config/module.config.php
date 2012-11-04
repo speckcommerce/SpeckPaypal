@@ -8,9 +8,9 @@ return array(
     ),
 
     'api' => array(
-       'username' 				=> 'support_api1.silkempire.com',
-       'password' 				=> '5BGT3TXP76BHT7N2',
-       'signature'				=> 'AK-5v5Tl4OBBtGGlEyezDrRnyZFeA.bs3tDfnwyjeVknLQc6mEIbwfDe',
+       'username' 				=> '',
+       'password' 				=> '',
+       'signature'				=> '',
        'endpoint'               => 'https://api-3t.sandbox.paypal.com/nvp'
     )
 );
