@@ -1,0 +1,9 @@
+<?php
+return array(
+    'api' => array(
+       'username' 				=> '',
+       'password' 				=> '',
+       'signature'				=> '',
+       'endpoint'               => 'https://api-3t.sandbox.paypal.com/nvp'
+    )
+);
