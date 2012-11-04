@@ -22,6 +22,7 @@ This module currently supports the following calls with API version 95.0:
 * DoExpressCheckoutPayment
 * GetExpressCheckoutDetails
 * GetTransactionDetails
+* RefundTransaction
 * SetExpressCheckout
 
 Requirements
