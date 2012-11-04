@@ -20,6 +20,8 @@ This module currently supports the following calls with API version 95.0:
 * DoCapture
 * DoDirectPayment
 * DoExpressCheckoutPayment
+* DoVoid
+* GetBalance
 * GetExpressCheckoutDetails
 * GetTransactionDetails
 * RefundTransaction

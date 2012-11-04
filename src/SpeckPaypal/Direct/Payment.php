@@ -6,12 +6,6 @@ use SpeckPaypal\Element\Address;
 
 class Payment extends AbstractModel
 {
-    /**
-     * Defined payment types
-     */
-    const SALE 		        = "Sale";
-    const AUTHORIZATION 	= "Authorization";
-
     protected $_paymentDetails;
     protected $_address;
     protected $_shipAddress;
@@ -54,30 +48,6 @@ class Payment extends AbstractModel
     public function setPaymentDetails($details)
     {
         $this->_paymentDetails = $details;
-
-        return $this;
-    }
-
-    /**
-     * (Optional) How you want to obtain payment. It is one of the following values:
-     *  Authorization – This payment is a basic authorization subject to settlement
-     *                  with PayPal Authorization and Capture.
-     *  Sale          – This is a final sale for which you are requesting payment (default).
-     *
-     * NOTE:Order is not allowed for Direct Payment.
-     * Character length and limit: Up to 13 single-byte alphabetic characters
-     *
-     * @param $paymentAction
-     * @return Payment
-     * @throws Exception
-     */
-    public function setPaymentAction($paymentAction)
-    {
-        if(!in_array($paymentAction, array(self::AUTHORIZATION, self::SALE))) {
-            throw new \Exception("Invalid payment action of {$paymentAction} passed.");
-        }
-
-        $this->paymentAction = $paymentAction;
 
         return $this;
     }
@@ -429,6 +399,11 @@ class Payment extends AbstractModel
 
         $amt = $this->_paymentDetails->getAmt();
         if(empty($amt)) {
+            return false;
+        }
+
+        //payment details payment action cannot be order
+        if($this->_paymentDetails->getPaymentAction() == "Order") {
             return false;
         }
 
