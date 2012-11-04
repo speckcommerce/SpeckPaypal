@@ -15,14 +15,14 @@ Please see: [Paypal API Docs](https://cms.paypal.com/us/cgi-bin/?cmd=_render-con
 To integrate with this module you will want to sign up for a sandbox account on Paypal. See the developer website for instructions.
 
 This module currently supports the following calls with API version 95.0:
-Callback
-DoAuthorization
-DoCapture
-DoDirectPayment
-DoExpressCheckoutPayment
-GetExpressCheckoutDetails
-GetTransactionDetails
-SetExpressCheckout
+* Callback
+* DoAuthorization
+* DoCapture
+* DoDirectPayment
+* DoExpressCheckoutPayment
+* GetExpressCheckoutDetails
+* GetTransactionDetails
+* SetExpressCheckout
 
 Requirements
 ------------
