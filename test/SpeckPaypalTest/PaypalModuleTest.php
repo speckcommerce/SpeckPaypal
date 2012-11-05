@@ -3,9 +3,6 @@ namespace SpeckPaypalTest;
 
 use SpeckPaypal\Bootstrap;
 use PHPUnit_Framework_TestCase;
-use Zend\Db\Adapter\Adapter;
-use ZfcBase\Db\Adapter\MasterSlaveAdapter;
-use ZfcBaseTest\Mapper\TestAsset\TestMapper;
 
 class PaypalModuleTest extends PHPUnit_Framework_TestCase
 {
