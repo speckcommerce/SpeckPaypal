@@ -7,6 +7,8 @@ abstract class AbstractRequest extends AbstractElement
 {
     protected $method;
 
+    abstract public function isValid();
+
     /**
      * (Required)
      *
