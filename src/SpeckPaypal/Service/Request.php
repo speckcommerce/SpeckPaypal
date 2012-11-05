@@ -1,8 +1,6 @@
 <?php
 namespace SpeckPaypal\Service;
 
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use SpeckPaypal\Request\AbstractRequest;
 use SpeckPaypal\Response\Response;
 
