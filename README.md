@@ -67,7 +67,7 @@ $paypalConfig = new \SpeckPaypal\Element\Config($config);
 $client = new \Zend\Http\Client;
 $client->setMethod('POST');
 $client->setAdapter(new \Zend\Http\Client\Adapter\Curl);
-$paypalRequest = new \SpeckPaypal\Request;
+$paypalRequest = new \SpeckPaypal\Service\Request;
 $paypalRequest->setClient($client);
 $paypalRequest->setConfig($config);
 </pre>
@@ -78,7 +78,7 @@ $paymentDetails = new \SpeckPaypal\Element\PaymentDetails(array(
     'amt' => '10.00'
 ));
 
-$payment = new \SpeckPaypal\Direct\Payment(array('paymentDetails' => $paymentDetails));
+$payment = new \SpeckPaypal\Request\DoDirectPayment(array('paymentDetails' => $paymentDetails));
 $payment->setCardNumber('4744151425799438');
 $payment->setExpirationDate('112017');
 $payment->setFirstName('John');
@@ -106,7 +106,7 @@ Express Checkout Example:
 $paymentDetails = new \SpeckPaypal\Element\PaymentDetails(array(
     'amt' => '20.00'
 ));
-$express = new \SpeckPaypal\Express\SetExpressCheckout(array('paymentDetails' => $paymentDetails));
+$express = new \SpeckPaypal\Request\SetExpressCheckout(array('paymentDetails' => $paymentDetails));
 $express->setReturnUrl('http://www.someurl.com/return');
 $express->setCancelUrl('http://www.someurl.com/cancel');
 
@@ -118,7 +118,7 @@ $token = $response->getToken();
 $payerId = $response->getPayerId();
 
 //To capture express payment
-$captureExpress = new \SpeckPaypal\Express\DoExpressCheckoutPayment(array(
+$captureExpress = new \SpeckPaypal\Request\DoExpressCheckoutPayment(array(
     'token'             => $token,
     'payerId'           => $payerId,
     'paymentDetails'    => $paymentDetails
@@ -127,3 +127,9 @@ $response = $paypalRequest->send($captureExpress);
 
 echo $response->isSuccess();
 </pre>
+
+TODO
+----
+* add better support for response handling
+* refactor to relevant exception classes
+* add support for ebay items, survey questions ... and other missing payments pro apis
