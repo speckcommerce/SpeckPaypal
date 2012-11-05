@@ -1,8 +1,8 @@
 <?php
 namespace SpeckPaypal\Element;
 
-use SpeckPaypal\CountryCodes;
-use SpeckPaypal\AbstractElement;
+use SpeckPaypal\ValueObject\CountryCodes;
+use SpeckPaypal\Element\AbstractElement;
 
 class Address extends AbstractElement
 {

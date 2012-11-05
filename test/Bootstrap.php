@@ -64,19 +64,6 @@ class Bootstrap
         return static::$serviceManager;
     }
 
-    public static function buildPaypalRequest()
-    {
-        $sm = Bootstrap::getServiceManager();
-        $config = $sm->get('application')->getConfig();
-        $paypal = new \SpeckPaypal\Request;
-        $client = new \Zend\Http\Client;
-        $client->setMethod('POST');
-        $paypal->setClient($client);
-        $paypal->setConfig(new \SpeckPaypal\Element\Config($config['api']));
-
-        return $paypal;
-    }
-
     protected static function initAutoloader()
     {
         $vendorPath = static::findParentPath('vendor');

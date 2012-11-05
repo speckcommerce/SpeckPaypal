@@ -64,11 +64,6 @@ class Config
         return $this->username;
     }
 
-    public function setVersion($version)
-    {
-        $this->version = $version;
-    }
-
     public function getVersion()
     {
         return $this->version;
@@ -87,10 +82,6 @@ class Config
 
     public function __toString()
     {
-        if(false === $this->isValid()) {
-            throw new \Exception("SpeckPaypal\Element\Config Missing required configuration item.");
-        }
-
         return "VERSION=". urlencode($this->version)
                 . "&PWD=". urlencode($this->password)
                 . "&USER=". urlencode($this->username)
