@@ -13,9 +13,9 @@ class PaypalModuleTest extends PHPUnit_Framework_TestCase
     {
         $sm = Bootstrap::getServiceManager();
         $config = $sm->get('application')->getConfig();
-        $this->assertTrue(isset($config['api']));
+        $this->assertTrue(isset($config['speck-paypal-api']));
 
-        $config = $config['api'];
+        $config = $config['speck-paypal-api'];
         $this->assertTrue(array_key_exists('username', $config));
         $this->assertTrue(array_key_exists('password', $config));
         $this->assertTrue(array_key_exists('endpoint', $config));

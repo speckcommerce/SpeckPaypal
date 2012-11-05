@@ -1,7 +1,7 @@
 <?php
 namespace SpeckPaypal\Element;
 
-use SpeckPaypal\AbstractElement;
+use SpeckPaypal\Element\AbstractElement;
 
 class PaymentDetails extends AbstractElement
 {

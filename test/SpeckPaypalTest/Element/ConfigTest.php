@@ -7,21 +7,26 @@ use SpeckPaypal\Element\Config;
 
 class ConfigTest extends PHPUnit_Framework_TestCase
 {
-    public function testValidConfig()
+    protected $configArray;
+
+    public function setup()
     {
-        $config = new Config(array(
+        $this->configArray = array(
             'username'  => 'username',
             'password'  => 'password',
             'signature' => 'signature',
-            'endpoint'  => 'http://endpoint.com',
-            'version'   => '58.0'
-         ));
+            'endpoint'  => 'http://endpoint.com'
+        );
+    }
+
+    public function testValidConfig()
+    {
+        $config = new Config($this->configArray);
         $this->assertEquals($config->getUsername(), 'username');
         $this->assertEquals($config->getPassword(), 'password');
         $this->assertEquals($config->getSignature(), 'signature');
         $this->assertEquals($config->getEndpoint(), 'http://endpoint.com');
-        $this->assertEquals($config->getVersion(), '58.0');
-        $this->assertEquals($config->__toString(), "VERSION=58.0&PWD=password&USER=username&SIGNATURE=signature");
+        $this->assertEquals($config->__toString(), "VERSION=95.0&PWD=password&USER=username&SIGNATURE=signature");
     }
 
     public function testInvalidConfig()
@@ -29,12 +34,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase
         $config = new Config(array());
         $this->assertFalse($config->isValid());
 
-        try {
-            $config->__toString();
-            $this->fail();
-        } catch(\Exception $e) {
-            //
-            $this->assertEquals($e->getMessage(), 'SpeckPaypal\Element\Config Missing required configuration item.');
-        }
+        $config = new Config($this->configArray);
+        $this->assertTrue($config->isValid());
     }
 }
