@@ -3,6 +3,7 @@ SpeckPaypal
 
 A generic module for adding PayPal Payments support to a ZF2 application.
 
+[![Build Status](https://secure.travis-ci.org/steverhoades/SpeckPaypal.png)](http://travis-ci.org/steverhoades/SpeckPaypal)
 
 Introduction
 ------------
