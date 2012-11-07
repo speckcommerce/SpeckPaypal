@@ -3,7 +3,7 @@ SpeckPaypal
 
 A generic module for adding PayPal Payments support to a ZF2 application.
 
-[![Build Status](https://secure.travis-ci.org/steverhoades/SpeckPaypal.png)](http://travis-ci.org/steverhoades/SpeckPaypal)
+[![Build Status](https://secure.travis-ci.org/speckcommerce/SpeckPaypal.png)](http://travis-ci.org/speckcommerce/SpeckPaypal)
 
 Introduction
 ------------
@@ -40,7 +40,7 @@ The dependencies for SpeckCommerce are set up as Git submodules so you should no
 Contributors
 ------------
 
-* [Steve Rhoades] (https://github.com/SteveRhoades) (aka srhoades)
+* [Steve Rhoades] (https://github.com/SteveRhoades) (aka srhoades) [![Build Status](https://secure.travis-ci.org/steverhoades/SpeckPaypal.png)](http://travis-ci.org/steverhoades/SpeckPaypal)
 
 
 Community
