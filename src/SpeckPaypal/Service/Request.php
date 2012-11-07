@@ -23,7 +23,7 @@ class Request
      * @return Response
      * @throws Exception
      */
-    public function send(AbstractRequest $model)
+    public function send(AbstractRequest $request)
     {
         try {
 
@@ -38,21 +38,22 @@ class Request
                 throw new \Exception('Zend\Http\Client must be set and must be valid.');
             }
 
-            if(false === $model->isValid()) {
-                throw new \Exception(get_class($model) . " is invalid.");
+            if(false === $request->isValid()) {
+                throw new \Exception(get_class($request) . " is invalid.");
             }
 
             $client->setMethod('POST');
             $client->setUri(new \Zend\Uri\Http($config->getEndpoint()));
-            $client->setRawBody($config . $model);
+            $client->setRawBody($config . $request);
 
             $httpResponse = $client->send();
+
             $response = new Response($httpResponse->getBody());
 
         } catch(\Exception $e) {
 
             $response = new Response();
-            $response->addError($e->getMessage());
+            $response->addErrorMessage($e->getMessage());
         }
 
         return $response;

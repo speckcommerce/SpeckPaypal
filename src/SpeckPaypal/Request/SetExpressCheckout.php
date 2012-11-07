@@ -20,8 +20,6 @@ class SetExpressCheckout extends AbstractRequest
     const TAXIDTYPE_INDIVIDUAL = "BR_CPF";
     const TAXIDTYPE_BUSINESS   = "BR_CNPJ";
 
-    protected $_required = array('RETURNURL','CANCELURL','METHOD');
-
     protected $method;
     protected $maxAmt;
     protected $returnUrl;
@@ -68,12 +66,6 @@ class SetExpressCheckout extends AbstractRequest
     protected $_billingAgreement;
     protected $_surveyChoices;
 
-    /**
-     * config.ini should contain entires for the URLs used
-     * paypal.express.cancel (required)
-     * paypal.express.return (required)
-     * paypal.express.callback (optional)
-     */
     public function __construct($options = array())
     {
         parent::__construct($options);

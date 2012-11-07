@@ -1,14 +1,21 @@
 {
     "name": "speckcommerce/speck-paypal",
-    "description": "",
+    "description": "A generic module for adding PayPal support to a ZF2 application.",
     "type": "library",
     "keywords": [
         "zf2"
     ],
     "homepage": "http://github.com/speckcommerce/SpeckPaypal",
     "authors": [
+        {
+            "name": "Stephen Rhoades",
+            "email": "sedonami*at*gmail.com",
+            "homepage": "http://www.stephenrhoades.com"
+        }
     ],
     "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
     },
     "autoload": {
         "psr-0": {
