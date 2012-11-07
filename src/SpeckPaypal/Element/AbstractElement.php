@@ -1,19 +1,12 @@
 <?php
 namespace SpeckPaypal\Element;
 
-class AbstractElement
+abstract class AbstractElement
 {
     public function __construct($options = array())
     {
-        foreach($options as $key => $value) {
-            if($key == "method") {
-                continue;
-            }
-
-            $key = "set{$key}";
-            if(method_exists($this, $key)) {
-                $this->$key($value);
-            }
+        if(is_array($options)) {
+            $this->fromArray($options);
         }
     }
 
@@ -26,6 +19,20 @@ class AbstractElement
         }
 
         return true;
+    }
+
+    public function fromArray($data)
+    {
+        foreach($data as $key => $value) {
+            if($key == "method") {
+                continue;
+            }
+
+            $key = "set{$key}";
+            if(method_exists($this, $key)) {
+                $this->$key($value);
+            }
+        }
     }
 
     public function toArray()

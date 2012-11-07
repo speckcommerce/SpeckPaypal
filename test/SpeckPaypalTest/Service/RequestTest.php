@@ -59,8 +59,8 @@ TIMESTAMP=2012%2d11%2d02T06%3a11%3a17Z&CORRELATIONID=ee90a747f2bdb&ACK=Success&V
 
         $request->getClient()->setAdapter($adapter);
         $response = $request->send($payment);
-
-        $this->assertTrue($response->isSuccess(), current($response->getErrors()));
+        $this->assertTrue($response instanceof \SpeckPaypal\Response\Response);
+        $this->assertTrue($response->isSuccess(), current($response->getErrorMessages()));
     }
 
     public function testInvalidRequest()

@@ -6,14 +6,53 @@ use SpeckPaypal\Element\AbstractElement;
 
 class Address extends AbstractElement
 {
+    /**
+     * @var string
+     */
     protected $name;
+
+    /**
+     * @var string
+     */
     protected $street;
+
+    /**
+     * @var string
+     */
     protected $street2;
+
+    /**
+     * @var string
+     */
     protected $city;
+
+    /**
+     * @var string
+     */
     protected $state;
+
+    /**
+     * @var string
+     */
     protected $zip;
+
+    /**
+     * @var string
+     */
     protected $countryCode;
+
+    /**
+     * @var string
+     */
     protected $phoneNum;
+
+    /**
+     * NOTE: used by response only
+     *
+     * @var string
+     */
+    protected $addressStatus;
+
 
     public function setCity($city)
     {
@@ -71,6 +110,13 @@ class Address extends AbstractElement
         return $this;
     }
 
+    public function setAddressStatus($status)
+    {
+        $this->addressStatus = $status;
+
+        return $this;
+    }
+
     /**
      * (Required) Country code.
      * Character length and limitations: 2 single-byte characters
@@ -105,6 +151,11 @@ class Address extends AbstractElement
         return $this->countryCode;
     }
 
+    public function getCountry()
+    {
+        return $this->getCountryCode();
+    }
+
     public function getName()
     {
         return $this->name;
@@ -135,4 +186,8 @@ class Address extends AbstractElement
         return $this->zip;
     }
 
+    public function getAddressStatus()
+    {
+        return $this->addressStatus;
+    }
 }
