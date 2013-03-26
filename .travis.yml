@@ -9,7 +9,7 @@ env:
  - ZF2_PATH=./zf2/library
 
 before_install:
- - mv config/speck-paypal.local.php.dist config/speck-paypal.local.php
+ - mv config/speck-paypal.local.php.dist config/module.config.php
  - cd test; git clone --depth=1 https://github.com/zendframework/zf2.git
 
 script:
