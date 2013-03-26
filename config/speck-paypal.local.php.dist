@@ -4,6 +4,6 @@ return array(
        'username' 				=> '',
        'password' 				=> '',
        'signature'				=> '',
-       'endpoint'               => 'https://api-3t.sandbox.paypal.com/nvp'
+       'endpoint'               => 'https://api-3t.sandbox.paypal.com/nvp' //;Live URL: https://api-3t.paypal.com/nvp
     )
 );
