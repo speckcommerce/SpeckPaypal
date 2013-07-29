@@ -668,6 +668,16 @@ class CreateRecurringPaymentsProfile extends AbstractRequest
         return $this;
     }
 
+    public function getAddress()
+    {
+        return $this->_address;
+    }
+
+    public function getShipAddress()
+    {
+        return $this->_shipAddress;
+    }
+
     public function getMethod()
     {
         return $this->method;
@@ -695,7 +705,7 @@ class CreateRecurringPaymentsProfile extends AbstractRequest
 
     public function getSubscriberName()
     {
-        return $this->getSubscriberName;
+        return $this->subscriberName;
     }
 
     public function getProfileStartDate()
@@ -783,9 +793,19 @@ class CreateRecurringPaymentsProfile extends AbstractRequest
         return $this->acct;
     }
 
+    public function getCardNumber()
+    {
+        return $this->getAcct();
+    }
+
     public function getExpDate()
     {
         return $this->expDate;
+    }
+
+    public function getExpirationDate()
+    {
+        return $this->getExpDate();
     }
 
     public function getCvv2()
@@ -892,5 +912,31 @@ class CreateRecurringPaymentsProfile extends AbstractRequest
         }
 
         return true;
+    }
+
+    public function toArray()
+    {
+        $data = parent::toArray();
+
+        if(!is_null($this->_address)) {
+            //get address
+            $address = $this->_address->toArray();
+            if(isset($address['PHONENUM'])) {
+                $address['SHIPTOPHONENUM'] = $address['PHONENUM'];
+                unset($address['PHONENUM']);
+            }
+            $data = array_merge($data, $address);
+        }
+
+        if(!is_null($this->_shipAddress)) {
+            $shipAddress = $this->_shipAddress->toArray();
+            $tmp = array();
+            foreach($shipAddress as $key => $value) {
+                $tmp["SHIPTO{$key}"] = $value;
+            }
+            $data = array_merge($data, $tmp);
+        }
+
+        return $data;
     }
 }
