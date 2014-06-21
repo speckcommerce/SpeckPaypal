@@ -1,16 +1,16 @@
 language: php
 
 php:
-  - 5.3.3
-  - 5.3
   - 5.4
+  - 5.5
 
 env:
- - ZF2_PATH=./zf2/library
+ - ZF2_PATH=../vendor/zf2/library
 
 before_install:
  - mv config/speck-paypal.local.php.dist config/module.config.php
  - composer install 
+ - cd test
 
 script:
  - phpunit
