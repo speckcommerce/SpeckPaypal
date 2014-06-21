@@ -535,10 +535,11 @@ class TransactionSearch extends AbstractRequest
     
     public function isValid()
     {
-        if(empty($this->getStartDate())) {
+        $startDate = $this->getStartDate();
+        if(empty($startDate)) {
             return false;
         }
-        
+
         return true;
     }
 }
