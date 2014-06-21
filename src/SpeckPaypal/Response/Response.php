@@ -9,6 +9,10 @@ class Response
     protected $_errors = array();
     protected $_response;
 
+    protected static $_factory = array(
+        'TransactionSearch' => 'SpeckPaypal\\Response\\TransactionSearchResponse'
+    );
+
     protected $_multiFieldMap = array(
         'ERRORS'  => array(
             'LONGMESSAGE',
@@ -48,6 +52,15 @@ class Response
         if($this->isSuccess()) {
             $this->populate($parsedResponse);
         }
+    }
+
+    public static function factory($requestType, $response)
+    {
+        if(!empty(self::$_factory[$requestType])) {
+            return new self::$_factory[$requestType]($response);
+        }
+
+        return new static($response);
     }
 
     /**

@@ -22,6 +22,11 @@ abstract class AbstractRequest extends AbstractElement
         return $this;
     }
 
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
     /**
      * Return formatted NVP string
      *
