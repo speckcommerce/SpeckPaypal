@@ -73,7 +73,6 @@ class Response
     protected function populate($response)
     {
         $this->_response = $response;
-        var_dump($response);
     }
 
     /**
