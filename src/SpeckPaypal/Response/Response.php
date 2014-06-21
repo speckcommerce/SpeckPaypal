@@ -9,6 +9,10 @@ class Response
     protected $_errors = array();
     protected $_response;
 
+    protected static $_factory = array(
+        'TransactionSearch' => 'SpeckPaypal\\Response\\TransactionSearchResponse'
+    );
+
     protected $_multiFieldMap = array(
         'ERRORS'  => array(
             'LONGMESSAGE',
@@ -50,6 +54,15 @@ class Response
         }
     }
 
+    public static function factory($requestType, $response)
+    {
+        if(!empty(self::$_factory[$requestType])) {
+            return new self::$_factory[$requestType]($response);
+        }
+
+        return new static($response);
+    }
+
     /**
      * Template method for populating a response.  The default is to utilize the __call method to
      * access response values.  However there are cases where a Response class will need to post
@@ -60,6 +73,7 @@ class Response
     protected function populate($response)
     {
         $this->_response = $response;
+        var_dump($response);
     }
 
     /**

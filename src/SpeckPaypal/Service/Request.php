@@ -48,7 +48,7 @@ class Request
 
             $httpResponse = $client->send();
 
-            $response = new Response($httpResponse->getBody());
+            $response = Response::factory($request->getMethod(), $httpResponse->getBody());
 
         } catch(\Exception $e) {
 

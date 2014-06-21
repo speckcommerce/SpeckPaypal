@@ -27,15 +27,15 @@ class Bootstrap
             );//include __DIR__ . '/TestConfig.php.dist';
         }
 
-        $zf2ModulePaths = array(dirname(dirname(__DIR__)));
-        if (($path = static::findParentPath('devmodules'))) {
-            $zf2ModulePaths[] = $path;
-        }
-        if (($path = static::findParentPath('vendor'))) {
-            $zf2ModulePaths[] = $path;
-        }
-        if (($path = static::findParentPath('module')) !== $zf2ModulePaths[0]) {
-            $zf2ModulePaths[] = $path;
+        $zf2ModulePaths = array();
+
+        if(isset($testConfig['module_listener_options']['module_paths'])) {
+            $modulePaths = $testConfig['module_listener_options']['module_paths'];
+            foreach($modulePaths as $modulePath) {
+                if (($path = static::findParentPath($modulePath)) ) {
+                    $zf2ModulePaths[] = $path;
+                }
+            }
         }
 
         $zf2ModulePaths  = implode(PATH_SEPARATOR, $zf2ModulePaths) . PATH_SEPARATOR;
@@ -49,6 +49,7 @@ class Bootstrap
                 'module_paths' => explode(PATH_SEPARATOR, $zf2ModulePaths),
             ),
         );
+
 
 
         $config = ArrayUtils::merge($baseConfig, $testConfig);

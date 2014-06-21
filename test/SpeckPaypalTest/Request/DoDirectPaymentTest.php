@@ -145,11 +145,12 @@ class DoDirectPaymentTest extends PHPUnit_Framework_TestCase
     /**
      * Uncomment below methods to test against Paypal sandbox API  the below is for integration tests.
      * @todo create new test folder for integration tests.
-     *
+     * @group integration
+
     public function testDirectPaymentSaleIntegration()
     {
-        $payment = new DoDirectPayment(array('paymentDetails' => new \SpeckPaypal\Element\PaymentDetails('10.00')));
-
+        $payment = new DoDirectPayment(array('paymentDetails' => new \SpeckPaypal\Element\PaymentDetails(array('amt' => '10.00'))));
+        $payment->setIpAddress('127.0.0.1');
         $payment->setCardNumber('4744151425799438');
         $payment->setExpirationDate('112017');
         $payment->setFirstName('John');
@@ -157,6 +158,7 @@ class DoDirectPaymentTest extends PHPUnit_Framework_TestCase
 
         $address = new Address;
         $address->setStreet('27 nowhere');
+        $address->setCity('Some City');
         $address->setState('California');
         $address->setZip(92656);
         $address->setCountry('US');
@@ -165,17 +167,16 @@ class DoDirectPaymentTest extends PHPUnit_Framework_TestCase
         $payment->setAddress($address);
 
         $paypal = $this->paypalRequest;
-
         $response = $paypal->send($payment);
-//        var_dump($paypal->getClient()->getLastRawRequest());
-//        var_dump($paypal->getClient()->getLastRawResponse());
+        var_dump($paypal->getClient()->getLastRawRequest());
+        var_dump($paypal->getClient()->getLastRawResponse());
 
         $this->assertTrue($response->isSuccess());
     }
 
     public function testDirectPaymentAuthorizeAndCaptureIntegration()
     {
-        $payment = new DoDirectPayment(array('paymentDetails' => new \SpeckPaypal\Element\PaymentDetails('10.00')));
+        $payment = new DoDirectPayment(array('paymentDetails' => new \SpeckPaypal\Element\PaymentDetails(array('amt' => '10.00'))));
         $payment->setCardNumber('4744151425799438');
         $payment->setExpirationDate('112017');
         $payment->setPaymentAction(Payment::AUTHORIZATION);
@@ -184,9 +185,11 @@ class DoDirectPaymentTest extends PHPUnit_Framework_TestCase
 
         $address = new Address;
         $address->setStreet('27 nowhere');
+        $address->setCity('Some City');
         $address->setState('California');
         $address->setZip(92656);
         $address->setCountry('US');
+        $address->setPhoneNum('999-999-9999');
 
         $payment->setAddress($address);
 
@@ -207,5 +210,5 @@ class DoDirectPaymentTest extends PHPUnit_Framework_TestCase
         $response = $paypal->send($capture);
         $this->assertTrue($response->isSuccess());
     }
-    */
+     */
 }
