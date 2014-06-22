@@ -27,20 +27,23 @@ This module currently supports the following calls with API version 95.0:
 * GetTransactionDetails
 * RefundTransaction
 * SetExpressCheckout
+* TransactionSearch
+* UpdateRecurringPaymentsProfile
+* ManageRecurringPaymentsProfileStatus
+* CreateRecurringPaymentsProfile
 
 Requirements
 ------------
 
 The dependencies for SpeckCommerce are set up as Git submodules so you should not hav
-
-* PHP 5.3.3+
+* PHP 5.4+ (Note: This library should work with PHP 5.3.3+ however official support is no longer provided)
 * [Zend Framework 2](https://github.com/zendframework/zf2) (latest master)
 
 
 Contributors
 ------------
 
-* [Steve Rhoades] (https://github.com/SteveRhoades) (aka srhoades) [![Build Status](https://secure.travis-ci.org/steverhoades/SpeckPaypal.png)](http://travis-ci.org/steverhoades/SpeckPaypal)
+* [Steve Rhoades] (https://github.com/SteveRhoades) (IRC: srhoades) [![Build Status](https://secure.travis-ci.org/steverhoades/SpeckPaypal.png)](http://travis-ci.org/steverhoades/SpeckPaypal)
 
 
 Community
@@ -129,8 +132,19 @@ $response = $paypalRequest->send($captureExpress);
 echo $response->isSuccess();
 </pre>
 
+Transaction Search Example:
+<pre>
+$transactionSearch new \SpeckPaypal\Request\TransactionSearch();
+$transactionSearch->setStartDate('2014-06-21T00:00:00Z');
+
+$paypalRequest = $serviceManager->get('SpeckPaypal\Service\Request');
+$response = $paypalRequest->send($transactionSearch);
+</pre>
+
+var_dump($response->getResults());
+
 TODO
 ----
-* add better support for response handling
+* better validation based on paypal requirements (currently validation is loose)
 * refactor to relevant exception classes
 * add support for ebay items, survey questions ... and other missing payments pro apis
