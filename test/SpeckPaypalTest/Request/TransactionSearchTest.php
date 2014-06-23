@@ -110,6 +110,14 @@ class TransactionSearchTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($data['METHOD'], 'TransactionSearch');
     }
 
+    public function testTransactionSearchIsValid()
+    {
+        $search = new TransactionSearch();
+        $this->assertFalse($search->isValid());
+        $search->setStartDate('2014-06-21T00:00:00Z');
+        $this->assertTrue($search->isValid());
+    }
+
     /**
      * Integration Test - uncomment to test against paypal sandbox api
      * @group integration

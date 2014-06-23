@@ -139,9 +139,9 @@ $transactionSearch->setStartDate('2014-06-21T00:00:00Z');
 
 $paypalRequest = $serviceManager->get('SpeckPaypal\Service\Request');
 $response = $paypalRequest->send($transactionSearch);
-</pre>
 
 var_dump($response->getResults());
+</pre>
 
 TODO
 ----
