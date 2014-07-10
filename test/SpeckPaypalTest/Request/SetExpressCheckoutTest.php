@@ -179,6 +179,13 @@ class SetExpressCheckoutTest extends PHPUnit_Framework_TestCase
 
     /**
      * Uncomment below to do an integration test with Paypal Sandbox API
+     *
+     * To inspect request and response values you can add the following 
+     * after $paypal->send()
+     *
+     * var_dump($paypal->getClient()->getLastRawRequest());
+     * var_dump($paypal->getClient()->getLastRawResponse());
+     * var_dump($response);
      */
     
     /**
@@ -192,13 +199,10 @@ class SetExpressCheckoutTest extends PHPUnit_Framework_TestCase
 
         $paypal = $this->paypalRequest;
 
-
         $response = $paypal->send($express2);
-        var_dump($paypal->getClient()->getLastRawRequest());
-        var_dump($paypal->getClient()->getLastRawResponse());
-        var_dump($response);
 
         $this->assertTrue($response->isSuccess());
+        $this->assertNotEmpty($response->getToken());
     }
     */
 }
