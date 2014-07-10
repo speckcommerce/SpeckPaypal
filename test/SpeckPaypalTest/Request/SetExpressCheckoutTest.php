@@ -179,21 +179,24 @@ class SetExpressCheckoutTest extends PHPUnit_Framework_TestCase
 
     /**
      * Uncomment below to do an integration test with Paypal Sandbox API
+     */
+    
+    /**
+     * @group integration
      *
     public function testSetExpressCheckoutWithMinimumRequiredFields()
     {
-        $express = new SetExpressCheckout(new PaymentDetails('20.00'));
-        $express->setReturnUrl('http://www.someurl.com');
-        $express->setCancelUrl('http://www.someurl.com');
+        $express2 = new SetExpressCheckout(array('paymentDetails' => new PaymentDetails(array('amt' => '20.00'))));
+        $express2->setReturnUrl('http://www.someurl.com');
+        $express2->setCancelUrl('http://www.someurl.com');
 
         $paypal = $this->paypalRequest;
-        $paypal->getClient()->setAdapter($adapter);
 
 
-        $response = $paypal->send($express);
-//        var_dump($paypal->getClient()->getLastRawRequest());
-//        var_dump($paypal->getClient()->getLastRawResponse());
-//        var_dump($response);
+        $response = $paypal->send($express2);
+        var_dump($paypal->getClient()->getLastRawRequest());
+        var_dump($paypal->getClient()->getLastRawResponse());
+        var_dump($response);
 
         $this->assertTrue($response->isSuccess());
     }
