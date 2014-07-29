@@ -73,7 +73,7 @@ $client->setMethod('POST');
 $client->setAdapter(new \Zend\Http\Client\Adapter\Curl);
 $paypalRequest = new \SpeckPaypal\Service\Request;
 $paypalRequest->setClient($client);
-$paypalRequest->setConfig($config);
+$paypalRequest->setConfig($paypalConfig);
 </pre>
 
 Direct Payment Example (by default the request is sent as "Sale" which is equivalent to Authorize Capture):
