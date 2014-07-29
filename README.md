@@ -136,7 +136,7 @@ $payerId = $response->getPayerId();
 </pre>
 
 Now that you have the payerId you can capture the payment by calling DoExpressCheckoutPayment.
-</pre>
+<pre>
 //To capture express payment
 $captureExpress = new \SpeckPaypal\Request\DoExpressCheckoutPayment(array(
     'token'             => $token,
