@@ -106,6 +106,11 @@ echo $response->getTransactionId();
 </pre>
 
 Express Checkout Example:
+
+It's important to understand the flow of PayPal's express checkout before attempting to use this API.
+![Paypal Express Checkout Flow](http://www.stephenrhoades.com/caps/54a3c7.png)
+
+In order to redirect the user to PayPal we first need to get a token.
 <pre>
 $paymentDetails = new \SpeckPaypal\Element\PaymentDetails(array(
     'amt' => '20.00'
@@ -119,8 +124,19 @@ $response = $paypalRequest->send($express);
 echo $response->isSuccess();
 
 $token = $response->getToken();
-$payerId = $response->getPayerId();
+</pre>
 
+Once you have received the token you forward the user to the paypal servers including the token you received.  Refer to the documentation for URL.  Once the user has completed the checkout process at PayPal they will be redirected to the URL you provided in SetExpressCheckout.  When the user lands on this page you will need to make a call back to PayPal including the Token to receive the buyers payment details.  You will use the payerId which is included in the response to capture the payment via DoExpressCheckoutPayment.
+<pre>
+$details = new \SpeckPaypal\Request\GetExpressCheckoutDetails(array('token' => $token));
+
+$response = $paypalRequest->send($details);
+
+$payerId = $response->getPayerId();
+</pre>
+
+Now that you have the payerId you can capture the payment by calling DoExpressCheckoutPayment.
+</pre>
 //To capture express payment
 $captureExpress = new \SpeckPaypal\Request\DoExpressCheckoutPayment(array(
     'token'             => $token,
