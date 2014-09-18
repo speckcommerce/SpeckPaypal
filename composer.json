@@ -1,6 +1,7 @@
 {
     "name": "speckcommerce/speck-paypal",
     "description": "A generic module for adding PayPal support to a ZF2 application.",
+    "license": "BSD-2-Clause",
     "type": "library",
     "keywords": [
         "zf2"
