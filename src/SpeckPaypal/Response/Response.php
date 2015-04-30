@@ -242,6 +242,14 @@ class Response
         return $keyName;
     }
 
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return (array)$this->_response;
+    }
+
     //map to properties
 
     /**
